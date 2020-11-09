@@ -26,20 +26,6 @@ function getMovies(searchText) {
             `;
             });
 
-            /*
-                        let movie = response.data;
-                        output += `
-                            <div class="col-md-3">
-                            <div class="well text-center">
-                            <img src="${movie.Poster}">
-                            <h5>${movie.Title}</h5>
-                            <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">Movie Details</a>
-                            </div>
-                            </div>
-                            `;
-            */
-
-
             $('#movies').html(output);
         })
         .catch((err) => {
@@ -48,34 +34,34 @@ function getMovies(searchText) {
 }
 
 function movieSelected(id) {
-    localStorage.setItem('movieId', id);
+    sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
     return true;
 }
 
 function getMovie() {
-    let movieId = localStorage.getItem('searchText');
-    var API_URL = `http://www.omdbapi.com/?s=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace'
+    let movieId = sessionStorage.getItem('movieId');
+    var API_URL = `http://www.omdbapi.com/?i=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace'
     axios.get(API_URL)
         .then((response) => {
             console.log(response);
-            let movie = response.data.Search;
+            let movie = response.data;
 
             let output = `
 <div class="row">
 <div class="col-md-4">
-<img src="${movie.Poster}" class="thumbnail">
+<img src="${response.Poster}" class="thumbnail">
 </div>
 <div class="col-md-8">
-<h2>${movie.Title}</h2>
+<h2>${response.Title}</h2>
 <ul class="list-group">
-<li class="list-group-item"><strong>Genre:</strong> ${movie.Genre}</li>
-<li class="list-group-item"><strong>Released:</strong> ${movie.Released}</li>
-<li class="list-group-item"><strong>Rated:</strong> ${movie.Rated}</li>
-<li class="list-group-item"><strong>IMDB Rating:</strong> ${movie.imdbRating}</li>
-<li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
-<li class="list-group-item"><strong>Writer:</strong> ${movie.Writer}</li>
-<li class="list-group-item"><strong>Actors:</strong> ${movie.Actors}</li>
+<li class="list-group-item"><strong>Genre:</strong> ${response.Genre}</li>
+<li class="list-group-item"><strong>Released:</strong> ${response.Released}</li>
+<li class="list-group-item"><strong>Rated:</strong> ${response.Rated}</li>
+<li class="list-group-item"><strong>IMDB Rating:</strong> ${response.imdbRating}</li>
+<li class="list-group-item"><strong>Director:</strong> ${response.Director}</li>
+<li class="list-group-item"><strong>Writer:</strong> ${response.Writer}</li>
+<li class="list-group-item"><strong>Actors:</strong> ${response.Actors}</li>
 </ul>
 
 </div>
@@ -83,7 +69,7 @@ function getMovie() {
 <div class="row">
 <div class="well">
 <h3>Plot</h3>
-${movie.Plot}
+${response.Plot}
 <hr>
 <a href="http://imdb.com" target="_blank" class="btn btn-primary">View IMDB</a>
 <a href="index.html" class="btn btn-default">Go Back To Search</a>
