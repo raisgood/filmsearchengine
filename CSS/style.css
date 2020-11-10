@@ -6,9 +6,9 @@
 
 @media screen and (min-width: 450px) {
     #movies .col-md-3 .well {
-        height: 390px;
+        height: 300px;
     }
     #movies .col-md-3 img {
-        height: 240px;
+        height: 200px;
     }
 }
