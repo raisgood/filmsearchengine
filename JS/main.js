@@ -1,3 +1,4 @@
+//first search engine page code line 1-36
 $(document).ready(() => {
     $('#searchForm').submit((e) => {
         e.preventDefault();
@@ -5,7 +6,8 @@ $(document).ready(() => {
         getMovies(searchText);
     });
 });
-//"https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json" "https://movie-database-imdb-alternative.p.rapidapi.com/?i=tt4154796&r=json"
+
+//Api for Search Engine Page code line 10-36
 function getMovies(searchText) {
     var API_URL = `http://www.omdbapi.com/?s=${searchText}&apikey=387cdace`; // 'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace'
     axios.get(API_URL)
@@ -33,15 +35,16 @@ function getMovies(searchText) {
         });
 }
 
+//window location function line 39-43
 function movieSelected(id) {
     sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
     return true;
 }
-
+//Individual Movie Page API code line 45-87
 function getMovie() {
     let movieId = sessionStorage.getItem('movieId');
-    var API_URL = `http://www.omdbapi.com/?i=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace'
+    var API_URL = `http://www.omdbapi.com/?i=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace';
     axios.get(API_URL)
         .then((response) => {
             console.log(response);
