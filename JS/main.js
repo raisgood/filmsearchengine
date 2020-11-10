@@ -38,12 +38,12 @@ function getMovies(searchText) {
 function movieSelected(id) {
     sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
-    return true;
+    return false;
 }
 //Individual Movie Page API code line 45-87
 function getMovie() {
     let movieId = sessionStorage.getItem('movieId');
-    var API_URL = `http://www.omdbapi.com/?i=data.imdbID&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace';
+    var API_URL = `http://www.omdbapi.com/?i=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace';
     axios.get(API_URL)
         .then((response) => {
             console.log(response);
@@ -52,18 +52,18 @@ function getMovie() {
             let output = `
 <div class="row">
 <div class="col-md-4">
-<img src="${response.Poster}" class="thumbnail">
+<img src="${movie.Poster}" class="thumbnail">
 </div>
 <div class="col-md-8">
-<h2>${response.Title}</h2>
+<h2>${movie.Title}</h2>
 <ul class="list-group">
-<li class="list-group-item"><strong>Genre:</strong> ${response.Genre}</li>
-<li class="list-group-item"><strong>Released:</strong> ${response.Released}</li>
-<li class="list-group-item"><strong>Rated:</strong> ${response.Rated}</li>
-<li class="list-group-item"><strong>IMDB Rating:</strong> ${response.imdbRating}</li>
-<li class="list-group-item"><strong>Director:</strong> ${response.Director}</li>
-<li class="list-group-item"><strong>Writer:</strong> ${response.Writer}</li>
-<li class="list-group-item"><strong>Actors:</strong> ${response.Actors}</li>
+<li class="list-group-item"><strong>Genre:</strong> ${movie.Genre}</li>
+<li class="list-group-item"><strong>Released:</strong> ${movie.Released}</li>
+<li class="list-group-item"><strong>Rated:</strong> ${movie.Rated}</li>
+<li class="list-group-item"><strong>IMDB Rating:</strong> ${movie.imdbRating}</li>
+<li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
+<li class="list-group-item"><strong>Writer:</strong> ${movie.Writer}</li>
+<li class="list-group-item"><strong>Actors:</strong> ${movie.Actors}</li>
 </ul>
 
 </div>
@@ -71,9 +71,9 @@ function getMovie() {
 <div class="row">
 <div class="well">
 <h3>Plot</h3>
-${response.Plot}
+${movie.Plot}
 <hr>
-<a href="http://imdb.com" target="_blank" class="btn btn-primary">View IMDB</a>
+<a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
 <a href="index.html" class="btn btn-default">Go Back To Search</a>
 </div>
 </div>
