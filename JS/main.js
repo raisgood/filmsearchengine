@@ -13,9 +13,8 @@ function getMovies(searchText) {
     axios.get(API_URL)
         .then((response) => {
             console.log(response);
-
-            let output = '';
             let movies = response.data.Search;
+            let output = '';
             $.each(movies, (index, movie) => {
                 output += `
             <div class="col-md-3">
@@ -35,7 +34,7 @@ function getMovies(searchText) {
         });
 }
 
-//window location function line 39-43
+//Movie Selected function line 39-43
 function movieSelected(id) {
     sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
@@ -44,7 +43,7 @@ function movieSelected(id) {
 //Individual Movie Page API code line 45-87
 function getMovie() {
     let movieId = sessionStorage.getItem('movieId');
-    var API_URL = `http://www.omdbapi.com/?i=${movieId}&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace';
+    var API_URL = `http://www.omdbapi.com/?i=data.imdbID&apikey=387cdace`; //'http://www.omdbapi.com/?i=tt3896198&apikey=387cdace';
     axios.get(API_URL)
         .then((response) => {
             console.log(response);
