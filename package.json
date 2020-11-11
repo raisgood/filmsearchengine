@@ -1,0 +1,16 @@
+"scripts": {
+
+    "build": "webpack",
+
+    "dev": "webpack-dev-server --hot",
+
+    "predeploy": "npm run build",
+
+    "deploy": "gh-pages -d build"
+},
+"homepage": "raisgood.github.io/filmsearchengine", {
+
+    "devDependencies": {
+        "gh-pages": "2.0"
+    }
+}
