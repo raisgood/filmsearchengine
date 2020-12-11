@@ -34,7 +34,7 @@ function getMovies(searchText) {
         });
 }
 
-//Movie Selected function line 39-43
+//Movie Selected function line 38-43
 function movieSelected(id) {
     sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
