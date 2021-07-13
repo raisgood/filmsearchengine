@@ -9,5 +9,5 @@
 
         "deploy": "gh-pages -d build"
     },
-    "homepage": "raisgood.github.io/filmsearchengine"
+    "homepage": "https://raisgood.github.io/filmsearchengine"
 }
