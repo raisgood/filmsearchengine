@@ -8,5 +8,8 @@
     "homepage": "https://raisgood.github.io/filmsearchengine",
     "dependencies": {
         "webpack": "^5.45.1"
+    },
+    "devDependencies": {
+        "webpack-cli": "^4.7.2"
     }
 }
