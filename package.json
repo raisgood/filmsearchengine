@@ -1,5 +1,6 @@
 {
     "scripts": {
+        "start": "node your-script.js",
         "build": "webpack-dev-server --mode development --open",
         "prod_build": "webpack --mode production",
         "dev": "webpack-dev-server --hot",
